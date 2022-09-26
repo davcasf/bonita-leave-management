@@ -12,6 +12,17 @@
           <dynamicLabel xmi:type="expression:Expression" xmi:id="_vxEAKD1vEe21U43iHD6aBQ" name="" content="" returnTypeFixed="true"/>
           <dynamicDescription xmi:type="expression:Expression" xmi:id="_vxEAKT1vEe21U43iHD6aBQ" name="" content="" returnTypeFixed="true"/>
           <stepSummary xmi:type="expression:Expression" xmi:id="_vxEAKj1vEe21U43iHD6aBQ" name="" content="" returnTypeFixed="true"/>
+          <operations xmi:type="expression:Operation" xmi:id="_wPObcj1yEe21U43iHD6aBQ">
+            <leftOperand xmi:type="expression:Expression" xmi:id="_wPObcz1yEe21U43iHD6aBQ" name="request" content="request" type="TYPE_VARIABLE" returnType="com.company.model.LeaveRequest">
+              <referencedElements xmi:type="process:BusinessObjectData" xmi:id="_wPObdD1yEe21U43iHD6aBQ" documentation="Variable que almacena la información de una solicitud de ausencia." name="request" dataType="_vxEAgT1vEe21U43iHD6aBQ" className="com.company.model.LeaveRequest"/>
+            </leftOperand>
+            <rightOperand xmi:type="expression:Expression" xmi:id="_wPObdT1yEe21U43iHD6aBQ" name="requestInput.isApproved" content="requestInput?.isApproved" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="java.lang.Boolean">
+              <referencedElements xmi:type="process:ContractInput" xmi:id="_wPObdj1yEe21U43iHD6aBQ" name="requestInput" type="COMPLEX" createMode="false"/>
+            </rightOperand>
+            <operator xmi:type="expression:Operator" xmi:id="_wPObdz1yEe21U43iHD6aBQ" type="JAVA_METHOD" expression="setIsApproved">
+              <inputTypes>java.lang.Boolean</inputTypes>
+            </operator>
+          </operations>
           <loopCondition xmi:type="expression:Expression" xmi:id="_vxEAKz1vEe21U43iHD6aBQ" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
           <loopMaximum xmi:type="expression:Expression" xmi:id="_vxEALD1vEe21U43iHD6aBQ" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
           <cardinalityExpression xmi:type="expression:Expression" xmi:id="_vxEALT1vEe21U43iHD6aBQ" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
@@ -20,7 +31,11 @@
           <formMapping xmi:type="process:FormMapping" xmi:id="_vxEAMD1vEe21U43iHD6aBQ">
             <targetForm xmi:type="expression:Expression" xmi:id="_vxEAMT1vEe21U43iHD6aBQ" name="" content="" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
           </formMapping>
-          <contract xmi:type="process:Contract" xmi:id="_vxEAMj1vEe21U43iHD6aBQ"/>
+          <contract xmi:type="process:Contract" xmi:id="_vxEAMj1vEe21U43iHD6aBQ">
+            <inputs xmi:type="process:ContractInput" xmi:id="_wPObcD1yEe21U43iHD6aBQ" name="requestInput" type="COMPLEX" dataReference="request" createMode="false">
+              <inputs xmi:type="process:ContractInput" xmi:id="_wPObcT1yEe21U43iHD6aBQ" name="isApproved" type="BOOLEAN" createMode="false"/>
+            </inputs>
+          </contract>
           <expectedDuration xmi:type="expression:Expression" xmi:id="_vxEAMz1vEe21U43iHD6aBQ" name="" content="" returnType="java.lang.Long" returnTypeFixed="true"/>
         </elements>
         <elements xmi:type="process:XORGateway" xmi:id="_vxEAND1vEe21U43iHD6aBQ" documentation="Comprobación de si la ausencia ha sido aprobada o rechazada." name="Is approved?" outgoing="_vxEAXD1vEe21U43iHD6aBQ _vxEAXz1vEe21U43iHD6aBQ" incoming="_vxEAWT1vEe21U43iHD6aBQ">
@@ -60,7 +75,11 @@
         </elements>
       </elements>
       <data xmi:type="process:BusinessObjectData" xmi:id="_mYDz8D1wEe21U43iHD6aBQ" documentation="Variable que almacena la información de una solicitud de ausencia." name="request" dataType="_vxEAgT1vEe21U43iHD6aBQ" className="com.company.model.LeaveRequest">
-        <defaultValue xmi:type="expression:Expression" xmi:id="_mYDz8T1wEe21U43iHD6aBQ" name="" content="" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="java.lang.Object"/>
+        <defaultValue xmi:type="expression:Expression" xmi:id="_DDVQIj1yEe21U43iHD6aBQ" name="initRequest()" content="import org.bonitasoft.engine.identity.UserNotFoundException&#xD;&#xA;&#xD;&#xA;def leaveRequestVar = new com.company.model.LeaveRequest()&#xD;&#xA;leaveRequestVar.leaveStart = requestInput?.leaveStart&#xD;&#xA;leaveRequestVar.dayCount = requestInput?.dayCount&#xD;&#xA;&#xD;&#xA;try&#xD;&#xA;{&#xD;&#xA;&#x9;def processInitiator = apiAccessor.getIdentityAPI().getUser(apiAccessor.getProcessAPI()&#xD;&#xA;&#x9;&#x9;&#x9;.getProcessInstance(processInstanceId)&#xD;&#xA;&#x9;&#x9;&#x9;.getStartedBy())&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;leaveRequestVar.requestorId = processInitiator.id&#xD;&#xA;}&#xD;&#xA;catch(UserNotFoundException e)&#xD;&#xA;{&#xD;&#xA;&#x9;// Handle UserNotFoundException here&#xD;&#xA;&#x9;// Was the process started by the system (e.g.: a start event) ?&#xD;&#xA;&#x9;// Has the user who started the process instance been deleted ?&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return leaveRequestVar" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="com.company.model.LeaveRequest">
+          <referencedElements xmi:type="process:ContractInput" xmi:id="_oIIYgD1yEe21U43iHD6aBQ" name="requestInput" type="COMPLEX"/>
+          <referencedElements xmi:type="expression:Expression" xmi:id="_oIIYgT1yEe21U43iHD6aBQ" name="processInstanceId" content="processInstanceId" type="TYPE_ENGINE_CONSTANT" returnType="java.lang.Long"/>
+          <referencedElements xmi:type="expression:Expression" xmi:id="_oIIYgj1yEe21U43iHD6aBQ" name="apiAccessor" content="apiAccessor" type="TYPE_ENGINE_CONSTANT" returnType="org.bonitasoft.engine.api.APIAccessor"/>
+        </defaultValue>
       </data>
       <formMapping xmi:type="process:FormMapping" xmi:id="_vxEAUj1vEe21U43iHD6aBQ">
         <targetForm xmi:type="expression:Expression" xmi:id="_vxEAUz1vEe21U43iHD6aBQ" name="" content="" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
@@ -78,7 +97,9 @@
       </connections>
       <connections xmi:type="process:SequenceFlow" xmi:id="_vxEAXD1vEe21U43iHD6aBQ" documentation="Petición aprobada." name="Yes" target="_vxEAOD1vEe21U43iHD6aBQ" source="_vxEAND1vEe21U43iHD6aBQ">
         <decisionTable xmi:type="decision:DecisionTable" xmi:id="_vxEAXT1vEe21U43iHD6aBQ"/>
-        <condition xmi:type="expression:Expression" xmi:id="_vxEAXj1vEe21U43iHD6aBQ" name="true" content="true" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        <condition xmi:type="expression:Expression" xmi:id="_vxEAXj1vEe21U43iHD6aBQ" name="isApproved()" content="request.isApproved" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="java.lang.Boolean" returnTypeFixed="true">
+          <referencedElements xmi:type="process:BusinessObjectData" xmi:id="__-29ED1yEe21U43iHD6aBQ" documentation="Variable que almacena la información de una solicitud de ausencia." name="request" dataType="_vxEAgT1vEe21U43iHD6aBQ" className="com.company.model.LeaveRequest"/>
+        </condition>
       </connections>
       <connections xmi:type="process:SequenceFlow" xmi:id="_vxEAXz1vEe21U43iHD6aBQ" documentation="Petición rechazada." name="No" target="_vxEAQT1vEe21U43iHD6aBQ" source="_vxEAND1vEe21U43iHD6aBQ" isDefault="true">
         <decisionTable xmi:type="decision:DecisionTable" xmi:id="_vxEAYD1vEe21U43iHD6aBQ"/>
@@ -93,7 +114,18 @@
         <condition xmi:type="expression:Expression" xmi:id="_vxEAZz1vEe21U43iHD6aBQ" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
       </connections>
       <actors xmi:type="process:Actor" xmi:id="_vxEAaD1vEe21U43iHD6aBQ" documentation="This is an example of actor that is mapped to any ACME users" name="Employee actor" initiator="true"/>
-      <contract xmi:type="process:Contract" xmi:id="_vxEAaT1vEe21U43iHD6aBQ"/>
+      <contract xmi:type="process:Contract" xmi:id="_vxEAaT1vEe21U43iHD6aBQ">
+        <inputs xmi:type="process:ContractInput" xmi:id="_DDUpED1yEe21U43iHD6aBQ" name="requestInput" type="COMPLEX" dataReference="request">
+          <inputs xmi:type="process:ContractInput" xmi:id="_DDUpET1yEe21U43iHD6aBQ" name="leaveStart" type="LOCALDATE"/>
+          <inputs xmi:type="process:ContractInput" xmi:id="_DDUpEj1yEe21U43iHD6aBQ" name="dayCount" type="INTEGER"/>
+        </inputs>
+        <constraints xmi:type="process:ContractConstraint" xmi:id="_DDVQID1yEe21U43iHD6aBQ" expression="requestInput?.leaveStart != null" errorMessage="leaveStart is mandatory for LeaveRequest" name="mandatory_requestInput_leaveStart">
+          <inputNames>requestInput</inputNames>
+        </constraints>
+        <constraints xmi:type="process:ContractConstraint" xmi:id="_DDVQIT1yEe21U43iHD6aBQ" expression="requestInput?.dayCount != null" errorMessage="dayCount is mandatory for LeaveRequest" name="mandatory_requestInput_dayCount">
+          <inputNames>requestInput</inputNames>
+        </constraints>
+      </contract>
       <searchIndexes xmi:type="process:SearchIndex" xmi:id="_vxEAaj1vEe21U43iHD6aBQ">
         <name xmi:type="expression:Expression" xmi:id="_vxEAaz1vEe21U43iHD6aBQ" content="" returnTypeFixed="true"/>
         <value xmi:type="expression:Expression" xmi:id="_vxEAbD1vEe21U43iHD6aBQ" content="" returnTypeFixed="true"/>
