@@ -2,7 +2,7 @@
   "modelVersion" : "2.2",
   "id" : "LeaveRequestStatus",
   "name" : "LeaveRequestStatus",
-  "lastUpdate" : 1664187777115,
+  "lastUpdate" : 1664191058950,
   "rows" : [
     [
       {
@@ -123,7 +123,7 @@
                       },
                       "processVersion" : {
                         "type" : "constant",
-                        "value" : "3.0.0"
+                        "value" : "3.2.0"
                       },
                       "taskId" : {
                         "type" : "constant"
