@@ -2,7 +2,7 @@
   "modelVersion" : "2.2",
   "id" : "LeaveRequestStatus",
   "name" : "LeaveRequestStatus",
-  "lastUpdate" : 1664191058950,
+  "lastUpdate" : 1664194118840,
   "rows" : [
     [
       {
@@ -38,6 +38,156 @@
         "reference" : "db39f602-f5c0-4e12-89b0-24230583636f",
         "hasValidationError" : false,
         "id" : "pbTitle"
+      }
+    ],
+    [
+      {
+        "type" : "container",
+        "dimension" : {
+          "xs" : 12,
+          "sm" : 12,
+          "md" : 12,
+          "lg" : 12
+        },
+        "propertyValues" : {
+          "cssClasses" : {
+            "type" : "constant",
+            "value" : ""
+          },
+          "hidden" : {
+            "type" : "constant",
+            "value" : false
+          },
+          "repeatedCollection" : {
+            "type" : "variable",
+            "value" : ""
+          }
+        },
+        "reference" : "afe18736-338e-4583-bac6-d85351c70e69",
+        "hasValidationError" : false,
+        "id" : "pbContainer",
+        "rows" : [
+          [
+            {
+              "type" : "fragment",
+              "dimension" : {
+                "xs" : 12,
+                "sm" : 12,
+                "md" : 12,
+                "lg" : 12
+              },
+              "propertyValues" : {
+                "cssClasses" : {
+                  "type" : "constant",
+                  "value" : ""
+                },
+                "hidden" : {
+                  "type" : "constant",
+                  "value" : false
+                }
+              },
+              "reference" : "7b1cb718-37ef-4e0a-bbb3-4232931b00a3",
+              "hasValidationError" : false,
+              "id" : "NewLeaveRequestFragment",
+              "binding" : {
+                "dataExt" : "newLeaveRequest"
+              }
+            }
+          ],
+          [
+            {
+              "type" : "component",
+              "dimension" : {
+                "xs" : 12,
+                "sm" : 12,
+                "md" : 12,
+                "lg" : 12
+              },
+              "propertyValues" : {
+                "cssClasses" : {
+                  "type" : "constant",
+                  "value" : ""
+                },
+                "hidden" : {
+                  "type" : "constant",
+                  "value" : false
+                },
+                "disabled" : {
+                  "type" : "constant",
+                  "value" : false
+                },
+                "label" : {
+                  "type" : "interpolation",
+                  "value" : "Create a new request"
+                },
+                "alignment" : {
+                  "type" : "constant",
+                  "value" : "center"
+                },
+                "buttonStyle" : {
+                  "type" : "constant",
+                  "value" : "primary"
+                },
+                "action" : {
+                  "type" : "constant",
+                  "value" : "POST"
+                },
+                "assign" : {
+                  "type" : "constant",
+                  "value" : false
+                },
+                "url" : {
+                  "type" : "interpolation",
+                  "value" : "../API/bpm/process/{{processDefinitionInfo[0].id}}/instantiation"
+                },
+                "responseStatusCode" : {
+                  "type" : "variable",
+                  "value" : ""
+                },
+                "dataToSend" : {
+                  "type" : "expression",
+                  "value" : "newLeaveRequest"
+                },
+                "dataFromSuccess" : {
+                  "type" : "variable",
+                  "value" : ""
+                },
+                "closeOnSuccess" : {
+                  "type" : "constant",
+                  "value" : false
+                },
+                "dataFromError" : {
+                  "type" : "variable",
+                  "value" : ""
+                },
+                "targetUrlOnSuccess" : {
+                  "type" : "interpolation",
+                  "value" : "/bonita/apps/leave-request"
+                },
+                "collectionToModify" : {
+                  "type" : "variable"
+                },
+                "modalId" : {
+                  "type" : "constant",
+                  "value" : ""
+                },
+                "collectionPosition" : {
+                  "type" : "constant",
+                  "value" : "Last"
+                },
+                "valueToAdd" : {
+                  "type" : "constant"
+                },
+                "removeItem" : {
+                  "type" : "variable"
+                }
+              },
+              "reference" : "c4acf59a-b507-4c7e-aeb7-1b6cd7041910",
+              "hasValidationError" : false,
+              "id" : "pbButton"
+            }
+          ]
+        ]
       }
     ],
     [
@@ -84,77 +234,6 @@
               "id" : "pbContainer",
               "description" : "\"com.company.model.LeaveRequest\" object from \"leaveRequest\" variable",
               "rows" : [
-                [
-                  {
-                    "type" : "component",
-                    "dimension" : {
-                      "xs" : 12,
-                      "sm" : 12,
-                      "md" : 12,
-                      "lg" : 12
-                    },
-                    "propertyValues" : {
-                      "cssClasses" : {
-                        "type" : "constant",
-                        "value" : ""
-                      },
-                      "hidden" : {
-                        "type" : "constant",
-                        "value" : false
-                      },
-                      "text" : {
-                        "type" : "interpolation",
-                        "value" : "Create a new request"
-                      },
-                      "type" : {
-                        "type" : "constant",
-                        "value" : "process"
-                      },
-                      "targetUrl" : {
-                        "type" : "constant",
-                        "value" : "http://"
-                      },
-                      "pageToken" : {
-                        "type" : "constant"
-                      },
-                      "processName" : {
-                        "type" : "constant",
-                        "value" : "LeaveRequest"
-                      },
-                      "processVersion" : {
-                        "type" : "constant",
-                        "value" : "3.2.0"
-                      },
-                      "taskId" : {
-                        "type" : "constant"
-                      },
-                      "caseId" : {
-                        "type" : "constant"
-                      },
-                      "target" : {
-                        "type" : "constant",
-                        "value" : "_self"
-                      },
-                      "appToken" : {
-                        "type" : "constant"
-                      },
-                      "urlParams" : {
-                        "type" : "constant"
-                      },
-                      "alignment" : {
-                        "type" : "constant",
-                        "value" : "center"
-                      },
-                      "buttonStyle" : {
-                        "type" : "constant",
-                        "value" : "primary"
-                      }
-                    },
-                    "reference" : "730b5ea7-ec1a-4367-aba4-20eb626f2aa7",
-                    "hasValidationError" : false,
-                    "id" : "pbLink"
-                  }
-                ],
                 [
                   {
                     "type" : "component",
@@ -211,7 +290,7 @@
                         "value" : [
                           "Start date",
                           "Number of days",
-                          "Is Approved"
+                          "Status"
                         ]
                       },
                       "allowHtml" : {
@@ -243,7 +322,7 @@
                         "value" : [
                           "leaveStart",
                           "dayCount",
-                          "isApproved"
+                          "isApprovedLabel"
                         ]
                       },
                       "dimension" : {
@@ -532,6 +611,10 @@
                             "value" : {
                               "type" : "variable",
                               "value" : "leaveRequest_selected.isApproved"
+                            },
+                            "required" : {
+                              "type" : "constant",
+                              "value" : false
                             }
                           },
                           "reference" : "1413e2f1-1b88-41e0-8a8e-34fa9484cb73",
@@ -580,6 +663,55 @@
       "value" : [
         ""
       ],
+      "exposed" : false
+    },
+    "sessionInfo" : {
+      "type" : "url",
+      "value" : [
+        "../API/system/session/unusedId"
+      ],
+      "advancedOptions" : { },
+      "exposed" : false
+    },
+    "updateLeaveRequestStatus" : {
+      "type" : "expression",
+      "value" : [
+        "if($data.hasOwnProperty('leaveRequest') && $data.leaveRequest)",
+        "{",
+        "  for (let line of $data.leaveRequest)",
+        "  {",
+        "    if (line.isApproved === null)",
+        "    {",
+        "      line.isApprovedLabel = \"In progress\";",
+        "    }",
+        "    else if (line.isApproved)",
+        "    {",
+        "      line.isApprovedLabel = \"Approved\";",
+        "    }",
+        "    else",
+        "    {",
+        "      line.isApprovedLabel = \"Rejected\";",
+        "    }",
+        "  }",
+        "}",
+        "",
+        "return $data.leaveRequest;"
+      ],
+      "exposed" : false
+    },
+    "newLeaveRequest" : {
+      "type" : "json",
+      "value" : [
+        "{}"
+      ],
+      "exposed" : false
+    },
+    "processDefinitionInfo" : {
+      "type" : "url",
+      "value" : [
+        "../API/bpm/process?p=0&c=100&o=version%20DESC&f=name=LeaveRequest"
+      ],
+      "advancedOptions" : { },
       "exposed" : false
     }
   },
