@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<businessObjectModel xmlns="http://documentation.bonitasoft.com/bdm-xml-schema/1.0" modelVersion="1.0" productVersion="7.14.0">
+    <businessObjects>
+        <businessObject qualifiedName="com.company.model.LeaveRequest">
+            <description>Objeto que representa una solicitud de ausencia.</description>
+            <fields>
+                <field type="LONG" length="255" name="requestorId" nullable="false" collection="false">
+                    <description>ID del solicitante de la ausencia.</description>
+                </field>
+                <field type="LOCALDATE" length="255" name="leaveStart" nullable="false" collection="false">
+                    <description>Fecha de inicio de la ausencia.</description>
+                </field>
+                <field type="INTEGER" length="255" name="dayCount" nullable="false" collection="false">
+                    <description>Número de días de la ausencia.</description>
+                </field>
+                <field type="BOOLEAN" length="255" name="isApproved" nullable="true" collection="false">
+                    <description>Ausencia aprobada.</description>
+                </field>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+    </businessObjects>
+</businessObjectModel>
